@@ -9,18 +9,12 @@ Welcome to FitQuest! An exciting fitness app powered by Flask. Get ready to emba
    git clone https://github.com/your-username/FitQuest.git
    cd FitQuest
    ```
-
-2. **Install Dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Run the App:**
+2. **Run the App:**
    ```bash
    python app.py
    ```
 
-4. **Open Your Browser:**
+3. **Open Your Browser:**
    Visit [http://localhost:5000](http://localhost:5000) to access FitQuest! 🌐🔥
 
 ## Features

@@ -115,10 +115,9 @@ def login():
 # Start Jumping Jacks route
 @app.route('/start_jumping_app', methods=['POST'])
 def start_jumping_app():
-    get_username()
     if request.method == 'POST':
         username = request.form.get('username')
-        run_jumping_jack_app(username)
+        run_jumping_jack_app()
         return render_template('success.html')
     else:
         return render_template('error.html', error='Invalid request method')

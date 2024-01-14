@@ -15,7 +15,7 @@ def get_username():
     username = simpledialog.askstring("Input", "Enter your username:")
     return username
 
-def run_jumping_jack_app(username):
+def run_jumping_jack_app():
     md_drawing = md.solutions.drawing_utils
     md_drawing_style = md.solutions.drawing_styles
     md_pose = md.solutions.pose
@@ -23,8 +23,7 @@ def run_jumping_jack_app(username):
     count = 0
     position = None
     start_time = time.time()  # Record the start time
-    duration = 20  # Set the duration to 60 seconds
-    save_user_info(username, count)  # Save user information
+    username = get_username()  # Get username here
 
     cap = cv2.VideoCapture(0)
     video_file = None
@@ -44,7 +43,7 @@ def run_jumping_jack_app(username):
     label = Label(root, text="Jumping Jacks in Progress", font=("Arial", 24))
     label.pack(pady=10)
 
-    timer_label = Label(root, text=f"Time Remaining: {duration} seconds", font=("Arial", 18), fg="red")
+    timer_label = Label(root, text=f"Time Remaining: 60 seconds", font=("Arial", 18), fg="red")
     timer_label.pack(pady=10)
 
     video_label = Label(root)
@@ -62,20 +61,20 @@ def run_jumping_jack_app(username):
     )
 
     def update_jump():
-        nonlocal count, duration
+        nonlocal count
         label.config(text=f"Jumping Jacks Count: {count}")
-        timer_label.config(text=f"Time Remaining: {duration} seconds")
         elapsed_time = time.time() - start_time
 
         # Check if the duration is not exceeded
-        if elapsed_time < duration:
+        if elapsed_time < 20:  # Set the duration to 20 seconds
             # Update the countdown every second
-            duration_remaining = int(duration - elapsed_time)
+            duration_remaining = int(20 - elapsed_time)
             timer_label.config(text=f"Time Remaining: {duration_remaining} seconds")
             label.after(1000, update_jump)
         else:
             save_user_info(username, count)  # Save user information
             show_congratulations(root)
+
 
     def process_frame():
         nonlocal position, count
@@ -83,16 +82,10 @@ def run_jumping_jack_app(username):
         if not running[0]:
             return
 
-        if video_file is not None:
-            success, image = video_file.read()
-            if not success:
-                print("Video playback ended.")
-                return
-        else:
-            success, image = cap.read()
-            if not success:
-                print("Empty Camera")
-                return
+        success, image = cap.read()
+        if not success:
+            print("Empty Camera")
+            return
 
         image = cv2.cvtColor(cv2.flip(image, 1), cv2.COLOR_BGR2RGB)
         result = pose.process(image)
@@ -150,8 +143,6 @@ def run_jumping_jack_app(username):
     root.mainloop()
 
     cap.release()
-    if video_file is not None:
-        video_file.release()
     cv2.destroyAllWindows()
 
 def save_user_info(username, count):
