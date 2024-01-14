@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitQuest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: Poppins;
+        }
+
+        body {
+			background: linear-gradient(45deg, #0d4270, #1b3dad);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+		}
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 60%;
+            width: 50%;
+            z-index: 1; 
+            border-radius: 4px;
+            border: 2px solid #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        #logo {
+            width: 400px; 
+            height: 200px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        #title {
+            font-size: 60px;
+            font-weight: bold;
+            color: #fff;
+            margin: 0 auto;
+        }
+
+        #continueButton {
+            background-color: #fff;
+            color: #0d4270;
+            border: none;
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+
+        #continueButton:hover {
+            background-color: rgba(112, 183, 236, 0.2);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1 id="title">Welcome to FitQuest!</h1>
+        <img src="{{ url_for('static', filename='images/FitQuestLogo.png') }}" alt="Jumping Jack Image">
+        
+        <a href="{{ url_for('register') }}"><button id="continueButton">Continue</button>
+        </a>
+
+    </div>
+</body>
+</html>

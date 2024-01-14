@@ -215,7 +215,8 @@
       <h1>Hello!</h1>
       <p>Please sign up to continue.</p>
   
-      <form action="{{ url_for('register') }}" method="post">
+
+      <form action="{{ url_for('login') }}" method="post">
         <label for="lname">Email Address</label>
         <input type="email" id="email" name="email" required />
 
@@ -227,7 +228,6 @@
 
         <button type="submit">Sign Up</button>
       </form>
-      
        <!-- Flash messages for danger -->
        {% with messages = get_flashed_messages(category_filter=['danger']) %}
        {% if messages %}
@@ -256,8 +256,9 @@
           </div>
         </span>
         <div>
-          <button class="btn">Sign In</button>
-        </div>
+          <a href="{{ url_for('login') }}"><button class="btn">Sign In</button>
+          </a>
+          </div>
       </div>
     </div>
   </div>

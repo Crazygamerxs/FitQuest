@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FitQuest</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!--Bootstrap + Nav Loading-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  </head>
+
+  <body>
+    
+    <div id="navhere"></div>
+
+    <script>$(function(){
+      $("#navhere").load("nav.html");
+      });
+    </script>
+
+    <div class="container-fluid">
+        <div class="display">
+          <h2 id="currentTime" style="padding:0; margin:0;">January 14</h2>
+          <h1 id="currentNow" ></h1>
+        </div>
+
+        <ul>
+          <li class="sidebar">
+        <div class="contn container">
+          <div class="descriptions">
+            <h5>Shine</h5>
+            <p>Illuminate surroundings with ethereal light</p>
+            <p><span id="action">Action</span> ➛ Jumping Jacks : 3</p>
+          </div>
+        </div>
+      </li>
+      <li class="sidebar">
+        <div class=" contn container">
+          <div class="descriptions">
+            <h5>Fight</h5>
+            <p>Cast fire spell on enemy.</p>
+            <p><span id="action">Action</span> ➛ High Kicks : 11</p>
+          </div>
+        </div>
+      </li>
+      <li class="sidebar">
+        <div class="contn container">
+          <div class="descriptions">
+            <h5>Defence</h5>
+            <p>Health Shields</p>
+            <p><span id="action">Action</span> ➛ Squats : 7</p>
+          </div>
+        </div>
+      </div>
+    </li>
+    </ul>
+  </body>
+  <script>
+    function updateTime() {
+      const now = new Date();
+
+      const hour = now.getHours()%12;
+      const min = now.getMinutes();
+      const sec = now.getSeconds();
+      document.getElementById('currentNow').textContent = hour + ':' + min + ':' + sec;
+    }
+  
+    // Call the function to update the time initially
+    updateTime();
+  
+    // Set up an interval to update the time every second (optional)
+    setInterval(updateTime, 1000);
+  </script>
+</html>

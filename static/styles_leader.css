@@ -1,0 +1,72 @@
+body {
+    background-image: url('/static/terraria_slime.jpg');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+#LeaderboardDivider {
+    width: 25%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #4E79A7;  /* Adjusted background color */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    margin-left: 40%;
+    margin-top: 10%;
+}
+
+#LeaderboardText {
+    background-color: #2A4365;  /* Darker shade for better contrast */
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 15px;
+}
+
+.border {
+    border: 1px;
+    border-style: solid;
+}
+
+* {
+    font-family: 'Poppins', sans-serif;  /* Adjusted font style */
+    justify-content: center;
+    text-align: center;
+}
+
+#leaderboard {
+    list-style-type: decimal;
+    padding: 0;
+    margin: 15px 0;  /* Increased margin for better spacing */
+    color: white;
+}
+
+ul {
+    text-align: center;
+}
+
+button {
+    background-color: #E63946;  /* Adjusted button color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;  /* Added transition effect */
+}
+
+button:hover {
+    background-color: #C61E29;  /* Darker shade on hover */
+}

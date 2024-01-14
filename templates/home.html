@@ -20,7 +20,7 @@
   </head>
 <style>
   body{
-    background-color: rgb(255, 255, 255) !important;
+    background-color: #3dafd1 !important;
     color:white !important;
 }
 
@@ -28,7 +28,7 @@
     width: 430px !important;
     margin: 0 !important;
     justify-content: start;
-    height: 100vh;
+    height: 92.5vh;
     background-color: rgb(21, 40, 71);
     box-shadow: #3dd1b8;
 }
@@ -95,6 +95,32 @@ nav{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+#startButton,
+#stopButton {
+  border-radius: 30px;
+  background-color: #1696e6;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  margin: 10px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Add this style to create a flex container */
+#buttonContainer {
+  display: flex;
+  margin-left: 70%;
+}
+
+      /* Style for the image on the right side */
+    .jumping-jack-image {
+      float: right;
+      margin-right: 55%;
+      margin-top: -45%;
+      width: 200px; /* Adjust the width as needed */
+      height: auto;
+    }
 </style>
   <body>
     <nav class="navbar navbar-expand-sm">
@@ -110,10 +136,13 @@ nav{
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#" style="color:gray" id="linkinNav"> Activities </a>
+                      <!-- <a class="nav-link" href="{{ url_for('activities') }}" style="color:gray" id="linkinNav"> Activities </a> -->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" style="color:gray" id="linkinNav"> Leaderboard </a>
+            <a class="nav-link" href="{{ url_for('leaderboard') }}" style="color:gray" id="linkinNav"> Leaderboard </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('login') }}" style="color:gray" id="linkinNav"> Logout </a>
           </li>
         </ul>
       </div>
@@ -154,22 +183,53 @@ nav{
         </div>
       </div>
     </li>
-    </ul>
-  </body>
-  <script>
-    function updateTime() {
-      const now = new Date();
 
-      const hour = now.getHours()%12;
-      const min = now.getMinutes();
-      const sec = now.getSeconds();
-      document.getElementById('currentNow').textContent = hour + ':' + min + ':' + sec;
-    }
+</ul>
+<!-- Add the new div for the jumping jack image -->
+<!-- Add the new div for the jumping jack image -->
+<div class="jumping-jack-image">
+  <img src="{{ url_for('static', filename='images/jumping-jack.gif') }}" alt="Jumping Jack Image">
+  <div id="buttonContainer">
+    <button id="startButton" onclick="startJumping()">Start Jumping Jacks</button>
+    <!-- <button id="stopButton" onclick="stopJumping()">Stop Jumping Jacks</button> -->
+  </div>
   
-    // Call the function to update the time initially
-    updateTime();
-  
-    // Set up an interval to update the time every second (optional)
-    setInterval(updateTime, 1000);
-  </script>
+</div>
+</div>
+
+
+</body>
+<!-- Add these script tags to your HTML -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  // Function to start jumping jacks
+  function startJumping() {
+    $.post("/start_jumping_app", function(data, status) {
+      console.log("Start Jumping Jacks Request Status: " + status);
+    });
+  }
+
+  // Function to stop jumping jacks
+  function stopJumping() {
+    $.post("/stop_jumping_app", function(data, status) {
+      console.log("Stop Jumping Jacks Request Status: " + status);
+    });
+  }
+
+  // Function to update time (you can keep this as is)
+  function updateTime() {
+    const now = new Date();
+    const hour = now.getHours() % 12;
+    const min = now.getMinutes();
+    const sec = now.getSeconds();
+    document.getElementById('currentNow').textContent = hour + ':' + min + ':' + sec;
+  }
+
+  // Call the function to update the time initially
+  updateTime();
+
+  // Set up an interval to update the time every second (optional)
+  setInterval(updateTime, 1000);
+</script>
+
 </html>
