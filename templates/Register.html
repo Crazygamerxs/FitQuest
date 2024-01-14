@@ -1,81 +1,265 @@
-<!DOCTYPE html
+<!DOCTYPE html>
 <html>
-<head>
-	<title>FitQuest</title>
-	<style>
-		body {
-			background-color: rgb(21, 40, 71);
-			font-family: Arial, sans-serif;
-		}
-		.container {
-			width: 400px;
-			background-color: rgb(107, 136, 173);
-			padding: 20px;
-			border-radius: 5px;
-			box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-			margin: 50px auto;
-		}
-		.container h1, .container h2 {
-			text-align: center;
-			margin-bottom: 2px;
-			margin-top: 0;
-		}
+  <head>
+    <meta charset="UTF-8" />
+    <title>FitQuest</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  </head>
+  <style>
+    * {
+    font-family: Poppins;
+    }
 
-		.container form {
-			display: flex;
-			flex-direction: column;
-		}
-		.container label {
-			margin-bottom: 5px;
-		}
-		.container input[type="text"],
-		.container input[type="email"],
-		.container input[type="password"] {
-			padding: 10px;
-			border: 1px solid #ccc;
-			border-radius: 5px;
-			margin-bottom: 10px;
-		}
-		.container input[type="submit"] {
-			background-color: rgb(21, 40, 71);
-			color: #fff;
-			padding: 10px;
-			border: none;
-			border-radius: 5px;
-			cursor: pointer;
-			margin-top: 10px;
-			font-size: 15px;
-		}
-		.container input[type="submit"]:hover {
-			background-color: #074a6d;
-		}
-		.container p {
-			text-align: center;
-			margin-top: 20px;
-		}
-		.container a {
-			color: rgb(21, 40, 71);
-			text-decoration: none;
-		}
-		.container a:hover {
-			text-decoration: underline;
-		}
-	</style>
-</head>
-<body>
-	<div class="container">
-  <h1><u>FitQuest</u></h1>
-	<h2><u>Sign-Up</u></h2>
-		<form>
-			<label for="email">Email</label>
-			<input type="email" id="email" name="email" required>
-			<label for="username">Username</label>
-			<input type="text" id="username" name="username" required>
-			<label for="password">Password</label>
-			<input type="password" id="password" name="password" required>
-			<input type="submit" value="Sign Up">
-		</form>
-		<p>Already have an account? <a href="#">Login here</a></p>
-	</div>
+    body {
+      background: linear-gradient(45deg, #286090, #0a2e40);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      
+      .container {
+        display: flex;
+        justify-content: space-between;
+        width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: rgb(107, 136, 173);
+        border-radius: 4px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+      
+      .left-side {
+        width: 50%;
+      }
+      
+      .right-side {
+        width: 40%;
+        background-color: rgb(21, 40, 71);
+        padding: 20px;
+        border-radius: 4px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .right-side img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+      }
+      
+      .right-side p {
+        font-size: 0.8rem;
+        color: #fff;
+        margin-top: 0;
+      }
+      
+      .right-side a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.8rem;
+      }
+      
+      .right-side a:hover {
+        text-decoration: underline;
+      }
+      
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: #000;
+      }
+      
+      p {
+        font-size: 0.8rem;
+        color: #000;
+        margin-top: 20px;
+      }
+      
+      form {
+        margin-top: 20px;
+      }
+      
+      label {
+        display: block;
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+        color: #000;
+      }
+      
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+      }
+      
+      button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: rgb(21, 40, 71);
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+      }
+      
+      button[type="submit"]:hover {
+        background-color: rgba(21, 40, 71, 0.2);
+      }
+      
+      a {
+        color: rgb(21, 40, 71);
+        text-decoration: none;
+        font-size: 0.8rem;
+      }
+      
+      a:hover {
+        text-decoration: underline;
+      }
+
+    /* ... */
+
+    .btn {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        color: #fff;
+        background-color: rgb(107, 136, 173);
+      }
+      
+      .btn:hover,
+      .btn:focus,
+      .btn:active,
+      .btn.active {
+        color: #fff;
+        background-color: #286090;
+        border-color: #204d74;
+        outline: 0;
+      }
+      
+      .btn:active,
+      .btn.active {
+        background-image: none;
+        outline: 0;
+        -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+        box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+      }
+      
+      .btn.disabled,
+      .btn[disabled],
+      fieldset[disabled] .btn {
+        cursor: not-allowed;
+        filter: alpha(opacity=65);
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        opacity: 0.65;
+      }
+
+      #CommunityText {
+        color: white;
+      }
+
+      #HaveAccount {
+        color: white;
+      }
+      /* Add styles for flash messages */
+    .flash {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        color: #fff;
+        text-align: center;
+    }
+
+    /* Style for success flash messages */
+    .flash-success {
+        background-color: #5cb85c;
+    }
+
+    /* Style for danger flash messages */
+    .flash-danger {
+        background-color: #d9534f;
+    }
+      /* ... */
+  </style>
+ <body>
+  <div class="container">
+    <div class="left-side">
+      <h1>Hello!</h1>
+      <p>Please sign up to continue.</p>
+  
+      <form action="{{ url_for('register') }}" method="post">
+        <label for="lname">Email Address</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+
+        <button type="submit">Sign Up</button>
+      </form>
+      
+       <!-- Flash messages for danger -->
+       {% with messages = get_flashed_messages(category_filter=['danger']) %}
+       {% if messages %}
+         {% for message in messages %}
+           <div class="flash flash-danger">
+             {{ message }}
+           </div>
+         {% endfor %}
+       {% endif %}
+     {% endwith %}
+      <p>
+        Already have an account?
+        <a href="{{ url_for('login') }}">Sign In</a>
+      </p>
+    </div>
+    <div class="right-side">
+      <div class="soccer-ball">
+         <span class="circle circle-1"></span>
+         <span class="circle circle-2"></span>
+         <span class="circle circle-3"></span>
+      </div>
+      <h2 id="CommunityText">Join our community!</h2>
+      <div class="sign-in">
+         <span><div>
+              <p id="HaveAccount">Already have an account?</p>
+          </div>
+        </span>
+        <div>
+          <button class="btn">Sign In</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

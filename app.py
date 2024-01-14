@@ -12,19 +12,27 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
 class User(db.Model, UserMixin):
-    id = db.Column(db.String(20), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)  
     password = db.Column(db.String(60), nullable=False)
+
 
 # Load a user by ID for Flask-Login
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
 
-# The default route is the home page
+# The default route is the registeration page page
 @app.route('/')
-def home():
+def homepage():
     return render_template('register.html')
+
+
+# The default route is the home page
+@app.route('/home', methods=['GET', 'POST'])
+def home():
+    return render_template('home.html')
 
 
 
@@ -32,20 +40,23 @@ def home():
 def register():
     if request.method == 'POST':
         username = request.form['username']
+        email = request.form['email']
         password = request.form['password']
 
-        # Check if the username already exists
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
             flash('Username already exists. Please choose a different username.', 'danger')
             return redirect(url_for('register'))
 
+        existing_email = User.query.filter_by(email=email).first()
+        if existing_email:
+            flash('Email address already in use. Please choose a different email address.', 'danger')
+            return redirect(url_for('register'))
+
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
-        # Create a new user
-        new_user = User(id=username, username=username, password=hashed_password)
+        new_user = User(username=username, email=email, password=hashed_password)
 
-        # Add the user to the database
         db.session.add(new_user)
         db.session.commit()
 
@@ -53,6 +64,8 @@ def register():
         return redirect(url_for('login'))
 
     return render_template('register.html')
+
+
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -66,7 +79,7 @@ def login():
         if user and bcrypt.check_password_hash(user.password, password):
             login_user(user)
             flash('Login successful!', 'success')
-            return redirect(url_for('home'))  # Change 'register' to 'dashboard'
+            return redirect(url_for('home'))  
 
         else:
             flash('Login failed. Please check your username and password.', 'danger')

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FitQuest</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!--Bootstrap-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+
+  </head>
+<style>
+  body{
+    background-color: rgb(255, 255, 255) !important;
+    color:white !important;
+}
+
+.container-fluid {
+    width: 430px !important;
+    margin: 0 !important;
+    justify-content: start;
+    height: 100vh;
+    background-color: rgb(21, 40, 71);
+    box-shadow: #3dd1b8;
+}
+nav{
+    background-color: rgb(255, 255, 255) !important;
+    justify-content: end;
+}
+.navbar{
+    padding-left: 40px !important;
+    width: 100%;
+}
+
+.logo{
+    width: 20px;
+}
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    width: 330px;
+    margin-top:0px;
+}
+
+.container{
+    margin:5px 5px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 20px;
+
+    transition: ease-in-out 0.2s;
+}
+
+.container:hover{
+    scale:1.1;
+}
+
+.descriptions h5{
+    padding: 0;
+    margin: 10px 5px 5px;
+}
+
+.descriptions p {
+    padding: 0;
+    margin: 0 0 5px;
+    line-height: 1.3;
+}
+
+#action {
+    font-weight: bold;
+}
+.display{
+    padding: 20px clamp(30px, 10vw, 10px) 5px;
+    margin:0;
+    color: rgb(246, 251, 255);
+}
+
+.display h1{
+    font-size: clamp(80px, 10vw, 100px);
+    padding:0px;
+    margin:0px;
+    background: -webkit-linear-gradient(#5f47d8, #3dd1b8);
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: rgba(255, 255, 255, 0.71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+</style>
+  <body>
+    <nav class="navbar navbar-expand-sm">
+      <img class="logo navbar-brand" src="{{ url_for('static', filename='images/home.png') }}" />
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="color:gray" id="linkinNav"> Activities </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="color:gray" id="linkinNav"> Leaderboard </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="display">
+          <h2 id="currentTime" style="padding:0; margin:0;">January 14</h2>
+          <h1 id="currentNow" ></h1>
+        </div>
+
+        <ul>
+          <li class="sidebar">
+        <div class="container">
+          <div class="descriptions">
+            <h5>Shine</h5>
+            <p>Illuminate surroundings with ethereal light</p>
+            <p><span id="action">Action</span> ➛ Jumping Jacks : 3</p>
+          </div>
+        </div>
+      </li>
+      <li class="sidebar">
+        <div class="container">
+          <div class="descriptions">
+            <h5>Fight</h5>
+            <p>Cast fire spell on enemy.</p>
+            <p><span id="action">Action</span> ➛ High Kicks : 11</p>
+          </div>
+        </div>
+      </li>
+      <li class="sidebar">
+        <div class="container">
+          <div class="descriptions">
+            <h5>Defence</h5>
+            <p>Health Shields</p>
+            <p><span id="action">Action</span> ➛ Squats : 7</p>
+          </div>
+        </div>
+      </div>
+    </li>
+    </ul>
+  </body>
+  <script>
+    function updateTime() {
+      const now = new Date();
+
+      const hour = now.getHours()%12;
+      const min = now.getMinutes();
+      const sec = now.getSeconds();
+      document.getElementById('currentNow').textContent = hour + ':' + min + ':' + sec;
+    }
+  
+    // Call the function to update the time initially
+    updateTime();
+  
+    // Set up an interval to update the time every second (optional)
+    setInterval(updateTime, 1000);
+  </script>
+</html>
