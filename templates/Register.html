@@ -1,0 +1,81 @@
+<!DOCTYPE html
+<html>
+<head>
+	<title>FitQuest</title>
+	<style>
+		body {
+			background-color: rgb(21, 40, 71);
+			font-family: Arial, sans-serif;
+		}
+		.container {
+			width: 400px;
+			background-color: rgb(107, 136, 173);
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+			margin: 50px auto;
+		}
+		.container h1, .container h2 {
+			text-align: center;
+			margin-bottom: 2px;
+			margin-top: 0;
+		}
+
+		.container form {
+			display: flex;
+			flex-direction: column;
+		}
+		.container label {
+			margin-bottom: 5px;
+		}
+		.container input[type="text"],
+		.container input[type="email"],
+		.container input[type="password"] {
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			margin-bottom: 10px;
+		}
+		.container input[type="submit"] {
+			background-color: rgb(21, 40, 71);
+			color: #fff;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			margin-top: 10px;
+			font-size: 15px;
+		}
+		.container input[type="submit"]:hover {
+			background-color: #074a6d;
+		}
+		.container p {
+			text-align: center;
+			margin-top: 20px;
+		}
+		.container a {
+			color: rgb(21, 40, 71);
+			text-decoration: none;
+		}
+		.container a:hover {
+			text-decoration: underline;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+  <h1><u>FitQuest</u></h1>
+	<h2><u>Sign-Up</u></h2>
+		<form>
+			<label for="email">Email</label>
+			<input type="email" id="email" name="email" required>
+			<label for="username">Username</label>
+			<input type="text" id="username" name="username" required>
+			<label for="password">Password</label>
+			<input type="password" id="password" name="password" required>
+			<input type="submit" value="Sign Up">
+		</form>
+		<p>Already have an account? <a href="#">Login here</a></p>
+	</div>
+</body>
+</html>
